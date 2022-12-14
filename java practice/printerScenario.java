@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 public class printerScenario {
@@ -14,11 +15,11 @@ public class printerScenario {
         String input = sc.next();
 
         // computer taking instruction
-        if (a.equals(input)) {
+        if (a.equals(input.toLowerCase())) {
             //computer communicating with printer
             System.out.println("your print here");
             // computer taking instruction
-        } else if (b.equals(input)) {
+        } else if (b.equals(input.toLowerCase())) {
             //computer communicating with printer
             System.out.println("print command aborted");
         } else {
