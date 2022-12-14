@@ -9,7 +9,7 @@ public class printerScenario {
         String b= "cancel";
         //person start
         Scanner sc = new Scanner(System.in);
-        System.out.println("type 'print' to take print out,\n type 'cancel' to abort");
+        System.out.println("type 'print' to take print out,\ntype 'cancel' to abort");
         //input from person
         String input = sc.next();
 
