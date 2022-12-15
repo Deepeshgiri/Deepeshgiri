@@ -3,8 +3,8 @@ public class printer {
 
         computer obj = new computer();
         String task = obj.logic();
-        System.out.println(task);
-        return print();
+       // System.out.println(task);
+        return task;
     }
 
 }
