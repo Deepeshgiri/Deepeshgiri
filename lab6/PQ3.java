@@ -20,16 +20,14 @@ public class PQ3 {
             for(int i=0;i<y.length;i++){
                // System.out.println(y[i]);
                 char x= y[i];
-                System.out.println(x);
                 int v=x;
-                System.out.println(v);
 
                 if (v>=65&&v<=90) {
                     System.out.println(y[i]+" is upper case");
                 } else if ( v<=122&& v>=90){
-                    System.out.println(y[i]+" given is character");
+                    System.out.println(y[i]+" is lower case");
                 } else {
-                 System.out.print(y[i]+" is lower case");
+                 System.out.println(y[i]+" given is character");
                 }
 
             }
