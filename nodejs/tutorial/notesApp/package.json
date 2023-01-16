@@ -12,6 +12,5 @@
     "validator": "^13.7.0",
     "yargs": "^17.6.2"
   },
-  "devDependencies": {},
   "description": ""
 }

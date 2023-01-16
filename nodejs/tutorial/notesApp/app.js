@@ -26,7 +26,7 @@ yargs.command({
 
 //fs.writeFileSync('/notes.json')
 
-yargs.parse()
+yargs.parse();
 // console.log(process.argv)
 // console.log(yargs.argv)
 
