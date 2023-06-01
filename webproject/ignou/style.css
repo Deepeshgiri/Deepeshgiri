@@ -1,0 +1,21 @@
+td{
+    padding: 10px 10px;
+}
+
+div .search{   
+    display: block;
+     
+    text-align: center;
+}
+div{
+    display: block;
+}
+body{
+    text-align: center;
+}
+h1{
+    color: red;
+}
+th{
+    padding :10px;
+}
