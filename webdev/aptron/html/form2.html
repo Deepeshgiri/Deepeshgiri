@@ -1,29 +1,84 @@
 <html>
     <head>
         <title>form2</title>
+        <style>
+            td{
+                margin: 20px;
+                padding: 2px;
+                padding-bottom: 1px;
+            }
+        </style>
     </head>
     <body >
         <a href="index.html">back</a>
       <h1>Zoo Keeper Application form</h1> <br>
       <h3>Please complete the form. mandatory fields are marked with a *</h3><br>
-      <form><fieldset>
-        <legend>Contact Details</legend><br>
+      <div style="width:auto;margin-right: 50%;">
+        <form><fieldset>
+            <legend>Contact Details</legend><br>
+            <table>
+                <tr>
+                    <td> <label for="name">Name* </label></td>
+                    <td>
+                        <input type="text" name="" value="" required>
+                    </td>
+                    <tr>
+                        <td><label for="Telephone">Telephone </label></td>
+                        <td>
+                            <input type="text" name="" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">Email</label></td>
+                        <td><input type="email" required></td>
+                    </tr>
+                    
+                </tr>
+            </table>
+            
+      </div>
+      <div style="width:auto;margin-right: 50%;">
+        
+            <fieldset>
+                <legend>
+                    PERSONAL INFORMATION </legend>
+                    <table>
+                        <tr>
+                            <td>
+                                <label for="Age">*Age</label>
+                                <td>
+                                    <input type="number" required>
+                                </td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="">Gender</label><select name="" id=""><optgroup label="Gender"><option value="">Male</option><option value="">Female</option><option>Others</option></optgroup></select>
+                            </td>
+                            
+                        </tr>
+                        <tr><td>
+                            <label for=""><p >When did you first know you wanted to be a Zoo keeper?</p></label>
+                        </td>
+
+                    <td>
+                        <textarea rows="4" cols="8"></textarea>
+                    </td></tr>
+                    </table>
+                    <br>
+                
+            </fieldset>
+
+        
+      </div>
+      
           
-          <label for="name">Name* <input type="text" name="" value="" required></label>
-  <br>      <label for="Telephone">Telephone <input type="text" name="" required></label>
-   <br>     <label for="email">Email<input type="email" required></label>
-<br>
+ 
     
     </fieldset><br>
-    <fieldset>
-        <legend>
-            PERSONAL INFORMATION </legend><br>
-            <label for="Age">*Age<input type="number" required></label><br>
-            <label for="">Gender</label><select name="" id=""><optgroup label="Gender"><option value="">Male</option><option value="">Female</option><option>Others</option></optgroup></select>
-            <label for=""><p>When did you first know you wanted to be a Zoo keeper?</p><input type="text" size="200px"></label>
-        
-    </fieldset>
+    
     <br>
+    <div style="width:auto;margin-right: 50%;">
     <fieldset><legend>Pick your Favorite Animals </legend><br>
         
             <table style="margin:10px" ><tr ><td ><label for="zebra"><input type="checkbox">Zebra</label></td>
@@ -40,6 +95,6 @@
     </fieldset>
     <input type="button" value="Submit Application">
     </form>
-
+</div>
     </body>
 </html>
