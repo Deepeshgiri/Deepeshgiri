@@ -5,6 +5,7 @@ import userModel from "../models/userModel.js"
 import JWT from 'jsonwebtoken'
 
 const registrationController = async (req,res)=>{
+    // console.log(req.body)
     try {
         //destructure
         const {name,email,password,phone,address}=req.body
@@ -36,7 +37,8 @@ const registrationController = async (req,res)=>{
         }
 //register user 
         const hashedPassword = await hashpassword(password)
-        const user = new userModel({name, email,phone, address, password:hashedPassword})
+        const user = new userModel({name, email, phone, address, password:hashedPassword})
+        console.log(user)
         user.save()
 
         res.status(201).send({
