@@ -17,7 +17,8 @@ function Register() {
   }
   function handlesubmit(e){
     e.preventDefault()
-    axios.post(`http://localhost:8500/api/v1/auth/register` ,{data}).then(()=>{ toast.success("registration succesful")})
+    axios.post(`http://localhost:8500/api/v1/auth/register` ,{data}).then(()=>{
+      toast.success("registration succesful")})
     
    
     console.log(data)

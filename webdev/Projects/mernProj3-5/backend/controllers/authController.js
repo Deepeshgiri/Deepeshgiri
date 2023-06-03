@@ -5,11 +5,20 @@ import userModel from "../models/userModel.js"
 import JWT from 'jsonwebtoken'
 
 const registrationController = async (req,res)=>{
-    // console.log(req.body)
+
+    var name = req.body.data.name
+        var email= req.body.data.email
+        var password= req.body.data.password
+        var phone = req.body.data.phone
+        var address = req.body.data.address
+    console.log(req.body)
     try {
         //destructure
-        const {name,email,password,phone,address}=req.body
+        // const {name,email,password,phone,address}=req.body
 
+        
+
+        console.log(name)
         //validation
         if(!name){
             return res.send({error:"please provide name"})
