@@ -1,0 +1,61 @@
+.nav-bar{
+  display: flex;
+  justify-content: space-between;
+  background-color:black;
+} 
+
+.nav-bar a{
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+}
+
+.nav-bar .right{
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-bar a:hover, a:focus{
+  background-color: white;
+  color: black;
+}
+
+.nav-bar .active{
+  background-color: white;
+  color: black;
+}
+
+.nav-bar .logo{
+  position: relative;
+  left:100px;
+}
+
+/* slider css code */
+.slide{
+  width: 100%;
+  height: 300px;
+  background-image: url(/public/images/042.webp);
+  background-size: 100% 100%;
+  animation: move 10s infinite;
+}
+
+@keyframes move{
+  0%{background-image: url(/public/images/042.webp);}
+  35%{background-image: url(/public/images/043.webp)}
+  70%{background-image: url(/public/images/044.webp);}
+  100%{background-image: url(/public/images/45.webp);}
+}
+
+
+/* media query  */
+@media (max-width:480px)
+{
+  .nav-bar{
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-bar .right{
+    display: flex;
+    flex-direction: column;
+  }
+}
