@@ -7,6 +7,8 @@ import Contact from './pages/Contact';
 import Registration from './pages/Registration';
 import { Navbarr } from './component/Navbarr';
 import Users from './pages/Users';
+import Update from './pages/Update';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
               <Route path='/about' element={<About/>}/>
               <Route path='/contact' element={<Contact/>}/>
               <Route path='/registration' element={<Registration/>}/>
+              <Route path='/Update' element={<Update/>}/>
+              <Route path= '/login' element={<Login/>}/>
           </Routes>
         </BrowserRouter>
     </div>

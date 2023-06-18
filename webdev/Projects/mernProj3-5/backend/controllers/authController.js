@@ -6,19 +6,19 @@ import JWT from 'jsonwebtoken'
 
 const registrationController = async (req,res)=>{
 
-    var name = req.body.data.name
-        var email= req.body.data.email
-        var password= req.body.data.password
-        var phone = req.body.data.phone
-        var address = req.body.data.address
+    // var name = req.body.data.name
+    //     var email= req.body.data.email
+    //     var password= req.body.data.password
+    //     var phone = req.body.data.phone
+    //     var address = req.body.data.address
     console.log(req.body)
     try {
         //destructure
-        // const {name,email,password,phone,address}=req.body
+        const {name,email,password,phone,address}=req.body
 
         
 
-        console.log(name)
+        console.log(req.body)
         //validation
         if(!name){
             return res.send({error:"please provide name"})
@@ -67,20 +67,25 @@ const registrationController = async (req,res)=>{
 
 }
 
-const loginController = async (req,resp)=>{
+const loginController = async (req,res)=>{
+
+    console.log(req.body)
     try{
         const {email,password}= req.body
+        console.log(email,password)
 
-        // validation  for logine
+        // validation  for login
         if(!email||!password){
-            return resp.status(404).send({
+            return res.status(404).send({
                 success:false,
                 message:"inavlid email or password"
             })
         }
         const user = await userModel.findOne({email})
+        console.log(user)
         if(!user){
-            return resp.status(404).send({
+            console.log(user)
+            return res.status(404).send({
                 success:false,
                 message:"email is not registered"
 
@@ -88,7 +93,7 @@ const loginController = async (req,resp)=>{
         }
         const match = await comparePassword(password , user.password)
         if (!match){
-            return resp.status(200).send({
+            return res.status(200).send({
                 success:false,
                 message:"wrong password"
 
@@ -97,10 +102,11 @@ const loginController = async (req,resp)=>{
         //token
         
         const token = await JWT.sign({_id:user._id},process.env.JWT_SECRET_TOKEN, {expiresIn:"2d"})
-        resp.status(200).send({
+        res.status(200).send({
             success:true,
             message:"login successfully",
             user:{
+                name:user.name,
                 email:user.email,
                 phone:user.phone,
                 address:user.address
@@ -111,7 +117,7 @@ const loginController = async (req,resp)=>{
 
     }catch (error){
         console.log(error)
-        resp.status(500).send({
+        res.status(500).send({
             success:false,
             message:"error in login",
             error
@@ -120,8 +126,8 @@ const loginController = async (req,resp)=>{
 
 }
 //test controller
-const testController = (req,resp)=>{
-resp.send({
+const testController = (req,res)=>{
+res.send({
     message:"protected route"
 })
 }

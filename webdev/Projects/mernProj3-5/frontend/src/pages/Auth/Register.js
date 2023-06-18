@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Layout from "../../componets/Layout";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import toast from 'react-hot-toast'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+
+  const navigate= useNavigate()
   let [data , setData]= useState({
     name:"",
     email:'',
@@ -15,10 +19,30 @@ function Register() {
   function handleInput(e){
     setData({...data, [e.target.name]:e.target.value})
   }
-  function handlesubmit(e){
+  async function handlesubmit(e){
     e.preventDefault()
-    axios.post(`http://localhost:8500/api/v1/auth/register` ,{data}).then(()=>{
-      toast.success("registration succesful")})
+    try{
+      const res = await axios.post(`http://localhost:8500/api/v1/auth/register` ,data)
+      if(res.data.success){
+
+        
+        toast.success("registration succesful")
+        setTimeout(() => {
+          navigate('/login')
+        }, 2000);
+        
+        
+      }else{
+        toast.error(
+          res.data.error
+        )
+      }
+      
+    }catch (error){
+      console.log(error)
+      toast.error("something went wrong")
+    }
+    
     
    
     console.log(data)
