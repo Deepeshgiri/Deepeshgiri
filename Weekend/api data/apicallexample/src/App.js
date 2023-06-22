@@ -5,6 +5,7 @@ import List from './List';
 
 import Pagination1 from './Pagination1';
 import Page1 from './PaginationSir';
+import Moviepage from './Moviepage';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
        
         {/* <List/> */}
         {/* <Pagination1/> */}
-        <Page1/>
+        {/* <Page1/> */}
+        <Moviepage/>
       </header>
     </div>
   );

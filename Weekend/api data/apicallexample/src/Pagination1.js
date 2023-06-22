@@ -33,8 +33,8 @@ function Pagination1() {
           </tr>
         </thead>
         <tbody>
-            {user.map((list )=>
-          <tr key={recordPerPage}>
+            {user.map((list, i)=>
+          <tr key={i}>
             <th scope="row">{list.id}</th>
             <td>{list.firstname}</td>
             <td>{list.lastname}</td>
