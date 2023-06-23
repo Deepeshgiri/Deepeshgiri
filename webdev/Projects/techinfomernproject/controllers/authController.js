@@ -1,6 +1,7 @@
 import express from 'express'
 import userModel from '../models/userModel.js'
 import { comparePassword, hashPassword } from './../helpers/authHelpers.js';
+import  Jwt  from 'jsonwebtoken';
 
 
 export const registerController= async (req,res)=>{
@@ -73,11 +74,21 @@ try {
             message:"invalid password"
         })
     }
+ 
     //token
-    const token = await JWT.sign({_id:user._id}, process.env.JWT_SECRET,{expiresIn:"2d"})
+    const token = await Jwt.sign({_id:user._id}, process.env.JWT_SECRET,{expiresIn:"2d"})
 
     res.status(200).send({
-        success:true
+        success:true,
+        message:"user logged in successfully",
+        user:{
+            name:user.name,
+            email:user.email,
+            address:user.address,
+            phone:user.phone,
+            token:token
+        }
+
     })
     
     
@@ -91,3 +102,10 @@ try {
 }
    
  }
+
+export const testController = async (req,res)=>{
+    res.send({
+        status:true,
+        message:"testcontroller api working"
+    })
+}
