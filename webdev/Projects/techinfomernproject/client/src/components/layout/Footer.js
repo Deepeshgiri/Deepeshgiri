@@ -10,7 +10,7 @@ export const Footer = () => {
         <Link to='/policy'>policy</Link> |
         <Link to='/contact'>contact</Link> 
        </p> 
-        
+       
       </div>
    
   );

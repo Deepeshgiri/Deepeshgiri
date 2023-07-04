@@ -5,6 +5,10 @@ import { About } from './pages/About';
 import { Policy } from './pages/Policy';
 import { Contact } from './pages/Contact';
 import { PageNotFound } from './pages/PageNotFound';
+import Register from './pages/Auth/Register';
+import Test from './Test';
+import { Login } from './pages/Auth/Login';
+
 
 
 function App() {
@@ -15,8 +19,10 @@ function App() {
       <Route path='/about' element={<About/>}/>
       <Route path='/policy' element={<Policy/>}/>
       <Route path='/contact' element={<Contact/>}/>
-      {/* <Route path='/register' element={<Register/>}/> */}
+      <Route path='/register' element={<Register/>}/>
       <Route path='/*' element={<PageNotFound/>}/>
+      {/* <Route path ='/testt'element={<Test/>}/> */}
+      <Route path = '/login' element={<Login/>}/>
     </Routes>
     
       

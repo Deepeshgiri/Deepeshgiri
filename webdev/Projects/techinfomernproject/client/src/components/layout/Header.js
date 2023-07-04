@@ -1,5 +1,6 @@
 import React from 'react'
 import {NavLink , Link} from 'react-router-dom'
+import { toast } from 'react-toastify'
 const Header = () => {
   return (
     <>
@@ -9,7 +10,7 @@ const Header = () => {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse text-light  navbar-collapse" id="navbarTogglerDemo01">
-      <Link to='/' className="navbar-brand" > 🛍️E-com Web</Link>
+      <Link to='/' className="navbar-brand" > 🛍️E-com Web </Link>
       <ul className="navbar-nav  ms-auto mb-2 mb-lg-0">
         <li className="nav-item">
           <NavLink to='/' className="nav-link  " aria-current="page" >Home</NavLink>
