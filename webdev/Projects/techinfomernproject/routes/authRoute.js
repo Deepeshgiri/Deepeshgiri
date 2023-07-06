@@ -18,4 +18,8 @@ router.post('/login', loginController)
 //test
 router.get('/test',requireSignIn, isAdmin, testController )
 
+router.get('/user-auth', requireSignIn, (req,resp)=>{
+    resp.status(200).send({ok:true})
+})
+
 export default router

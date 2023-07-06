@@ -19,10 +19,12 @@ export const Login = () => {
         const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/login`,{email,password})
     if(res && res.data.success){
       setAuth({
+        ...Auth,
         user: res.data.user,
         token:res.data.token
       })
         toast.success("logged in success")
+        localStorage.setItem('auth', JSON.stringify(res.data))
         navigate('/')
     
     }else{
