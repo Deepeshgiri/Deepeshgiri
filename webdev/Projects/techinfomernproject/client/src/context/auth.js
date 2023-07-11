@@ -1,4 +1,5 @@
 import { useState,useContext,createContext, useEffect  } from "react";
+import axios from "axios";
 
 const AuthContext = createContext()
 
@@ -8,6 +9,8 @@ const [Auth,setAuth]=useState({
     user:null,
     token:""
 })
+//default axiosS
+axios.defaults.headers.common['Authorization']= Auth?.token
 useEffect(()=>{
     const data = localStorage.getItem('auth')
     if (data){
