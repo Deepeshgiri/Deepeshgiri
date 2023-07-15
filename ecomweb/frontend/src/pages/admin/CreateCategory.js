@@ -78,9 +78,22 @@ export const CreateCategory = () => {
   const handleUpdate=async (e)=>{
      e.preventDefault()
      try {
-          axios.put(`http://localhost:8000/api/v1/category/update-category/${selected._id}`,{
+         const {data} = await axios.put(`http://localhost:8000/api/v1/category/update-category/${selected._id}`,{
             name:updatedName
           })
+         
+          if(data.success)
+          {
+              toast.success(`${updatedName} updated successfully.`)
+              setSelected("")
+              setUpdatedName("")
+              setVisible(false)
+              getAllCategories()
+          }
+          else{
+            toast.error(data.message)
+          }
+
      } catch (error) {
         console.log(error);
         toast.error("something went wrong")
@@ -124,7 +137,6 @@ export const CreateCategory = () => {
             {/* form ends */}
 
           </div>
-
           <Table className="w-75">
             <thead>
               <tr>
@@ -137,7 +149,7 @@ export const CreateCategory = () => {
                 <tr key={i}>
                   <td>{cat.name}</td>
                   <td>
-                    <button className="btn btn-primary" onClick={()=>{setVisible(true) ;setUpdatedName(cat.name)}}>Edit</button>&nbsp;
+                    <button className="btn btn-primary" onClick={()=>{setVisible(true) ;setUpdatedName(cat.name);setSelected(cat)}}>Edit</button>&nbsp;
 
                     <button className="btn btn-danger" onClick={()=>handleDelete(cat._id)}>Delete</button>
                   </td>
@@ -146,8 +158,12 @@ export const CreateCategory = () => {
             </tbody>
           </Table>
         </div>
+                {/* //sir code */}
+        {/* <Modal onCancel={()=>setVisible(false)} footer={null} visible={visible}>
+          <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmit={handleUpdate}/>
+        </Modal> */}
 
-        <Modal onCancel={()=>setVisible(false)} footer={null} visible={visible}>
+        <Modal  footer={null} open={false}>
           <CategoryForm value={updatedName} setValue={setUpdatedName} handleSubmit={handleUpdate}/>
         </Modal>
       </div>

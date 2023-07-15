@@ -9,6 +9,7 @@ import Register from './pages/Auth/Register';
 import Test from './Test';
 import { Login } from './pages/Auth/Login';
 import Dashboard from './pages/user/Dashboard';
+import PrivateRoute from './components/Routes/Private';
 
 
 
@@ -17,6 +18,9 @@ function App() {
     < >
     <Routes>
       <Route path='/' element={<HomePage/>}/>
+      <Route path='/dashboard' element={<PrivateRoute/>}>
+      <Route path='' element={<Dashboard/>}/>
+      </Route>
       <Route path='/dashboard' element={<Dashboard/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/policy' element={<Policy/>}/>

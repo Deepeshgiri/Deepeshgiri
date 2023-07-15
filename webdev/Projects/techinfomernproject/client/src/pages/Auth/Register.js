@@ -11,6 +11,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [ answer, setAnswer] = useState("")
 const navigate = useNavigate()
   
 
@@ -18,7 +19,7 @@ const navigate = useNavigate()
 const handleSubmit= async (e)=>{
     e.preventDefault()
    try {
-    const res = axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,phone,address,password})
+    const res = axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,phone,address,password,answer})
     if((await res).data.success){
         toast.success((await res).data.message)
         navigate('/login')
@@ -110,6 +111,22 @@ const handleSubmit= async (e)=>{
                 />
               </div>
             </div>
+            <div className="row mb-3">
+              <label className="col-sm-2 col-form-label ">
+                question:
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  required
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                  id="answer"
+                  placeholder="what is the nickname of your best friend?"
+                />
+              </div>
+            </div>
             <div className="col-12">
               <div className="form-check">
                 <input
@@ -118,6 +135,7 @@ const handleSubmit= async (e)=>{
                   id="gridCheck"
                   required
                 />
+                 
                 <label className="form-check-label">
                   By checking tick mark you agree our{" "}
                   <Link to="policy">Policy</Link>
@@ -125,7 +143,7 @@ const handleSubmit= async (e)=>{
               </div>
             </div>
             <div className="col-12">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary ">
                 Register
               </button>
             </div>

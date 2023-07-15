@@ -109,3 +109,42 @@ export const testController = async (req,res)=>{
         message:"testcontroller api working"
     })
 }
+//forgot password controller
+export const forgotPasswordController = async(req,res)=>{
+
+    try {
+        const {email,answer, newPassword} = req.body
+        if (!email){
+            res.status(400).send({mesage:"email is required!"})
+        }
+        if (!answer){
+            res.status(400).send({mesage:"question is required!"})
+        }
+        if (!newPassword){
+            res.status(400).send({mesage:"New Password  is required!"})
+        }
+
+        const user = await userModel.findOne({email,answer})
+        if(!user){
+            return res.status(404).send({
+                success:false,
+                message:"invalid email or answer"
+            })
+        }
+        const hashed = await hashPassword(newPassword)
+        await userModel.findByIdAndUpdate(user._id,{password:hashed})
+        res.status(200).send({
+            success:true,
+            message:"password reset successfully",
+            user
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({
+            success:false,
+            message:"something went wrong",
+            error
+        })
+    }
+}

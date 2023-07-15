@@ -10,6 +10,7 @@ export const HomePage = () => {
     <Layout title={"best offers"}>
         <h1>Homepage</h1>
         <pre>{JSON.stringify(Auth,null,4)}</pre>
+        
     </Layout>
   )
 }
