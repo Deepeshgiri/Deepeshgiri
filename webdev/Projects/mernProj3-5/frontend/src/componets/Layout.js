@@ -2,6 +2,9 @@ import React from "react";
 import Header from "./Header";
 import { Footer } from "./Footer";
 import { Helmet } from "react-helmet";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from "react-hot-toast";
 
 function Layout({ children }) {
   return (
@@ -15,7 +18,10 @@ function Layout({ children }) {
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <Header />
-      <main style={{ minHeight: "100vh" }}>{children}</main>
+      <main style={{ minHeight: "100vh" }}>{children}
+      <Toaster />
+      <ToastContainer/>
+      </main>
       <Footer />
     </div>
   );

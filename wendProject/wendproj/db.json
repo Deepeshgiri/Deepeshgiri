@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "name": "test1",
+      "email": "alsdhkladh@dasjas.com",
+      "password": "itsme",
+      "id": 5
+    },
+    {
+      "name": "deepesh",
+      "email": "test2@txt.com",
+      "password": "sdahajkldjk",
+      "id": 7
+    },
+    {
+      "name": "DKDcc",
+      "email": "DKD@GMAIL.COM",
+      "password": "DKD",
+      "id": 10
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/config.js";
 import router from "./routes/authRoute.js";
+import cors from 'cors'
+
 
 
 
@@ -18,7 +20,7 @@ connectDB();
 app.use(express.json());
 app.use(morgan("dev"));
 const PORT = process.env.PORT;
-
+app.use(cors())
 //routes
 app.use('/api/v1/auth',router)
 
