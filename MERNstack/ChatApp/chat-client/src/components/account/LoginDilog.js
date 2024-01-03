@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import {Box, Button, Dialog, List, ListItem} from '@mui/material'
+import {Box, Button, ButtonBase, Dialog, FormGroup, Input, List, ListItem} from '@mui/material'
 
 
 const LoginDilog = ()=>{
@@ -8,6 +8,11 @@ const LoginDilog = ()=>{
          alignItem:"center",
          justifyContent:"center"
          height:"100%`
+
+
+         const SignUp = ()=>{
+
+         }
     return(
        
         <dialogBox >
@@ -24,9 +29,16 @@ const LoginDilog = ()=>{
             </dialogBox>
             <Box>
                 <h1>Qr code</h1>
-                <Box><Button>Login</Button><Button>SignUp</Button></Box>
+                <Box><Button>Login</Button><Button onClick={SignUp}>SignUp</Button></Box>
             </Box>
         </Dialog>
+        <FormGroup>
+            <Input placeholder='Email'>Email </Input>
+            <Input placeholder='password'>Password</Input>
+            <Button variant="outlined" size="medium">
+          Medium
+        </Button>
+        </FormGroup>
         </dialogBox>
     )
 }
