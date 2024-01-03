@@ -1,10 +1,18 @@
-import {Box, Dialog, List, ListItem} from '@mui/material'
+import styled from '@emotion/styled'
+import {Box, Button, Dialog, List, ListItem} from '@mui/material'
+
 
 const LoginDilog = ()=>{
+   const dialogBox = styled(Box)`
+   display:flex,
+         alignItem:"center",
+         justifyContent:"center"
+         height:"100%`
     return(
-        <Box>
+       
+        <dialogBox >
         <Dialog open={true}> 
-        <Box>
+        <dialogBox>
                 <h2>Use WhatsApp on your computer</h2>
                 <List>
                 <ListItem>Open WhatsApp on your phone</ListItem>
@@ -13,12 +21,13 @@ const LoginDilog = ()=>{
                 <ListItem>Point your phone to this screen to capture the QR code</ListItem>
                 </List>
                 
-            </Box>
+            </dialogBox>
             <Box>
                 <h1>Qr code</h1>
+                <Box><Button>Login</Button><Button>SignUp</Button></Box>
             </Box>
         </Dialog>
-        </Box>
+        </dialogBox>
     )
 }
 export default LoginDilog
