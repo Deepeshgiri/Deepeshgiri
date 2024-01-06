@@ -1,5 +1,5 @@
 import './topbar.css'
-import { Person } from '@mui/icons-material'
+import { Chat, Notifications, Person, Search } from '@mui/icons-material'
 export default function(){
     return(
         <div className="topbarContainer">
@@ -8,7 +8,9 @@ export default function(){
             </div>
             <div className="topbarcenter">
                 <div className="searchbar">
-                    <imput className="searchInput" placeholder="search for people, post or video"></imput>
+                <Search/><input className="searchInput" placeholder="search for people, post or video">
+                    
+                    </input>    
 
                 </div>
             </div>
@@ -20,9 +22,18 @@ export default function(){
                 <div className="topbarIcons">
                     <div className="topbarIconItem">
                         <Person/>
-                        <span className="topbarIconBadge"></span>
+                        <span className="topbarIconBadge">1</span>
+                    </div>
+                    <div className="topbarIconItem">
+                        <Notifications/>
+                        <span className="topbarIconBadge">2</span>
+                    </div>
+                    <div className="topbarIconItem">
+                        <Chat/>
+                        <span className="topbarIconBadge">3</span>
                     </div>
                 </div>
+                <img src="" alt="image" className="topbarImage" />
             </div>
         </div>
     )
