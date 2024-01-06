@@ -3,6 +3,21 @@
     width: 100%;
     background-color: blueviolet;
     align-items:center;
+     display: flex;
     position: sticky;
     top:0;
+}
+.topbarLeft{
+    flex:3;
+    
+}
+
+.topbarCenter{
+    flex:5;
+   
+}
+
+.topbarRight{
+    flex:4;
+    
 }

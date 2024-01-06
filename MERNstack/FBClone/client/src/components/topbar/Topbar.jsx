@@ -6,7 +6,7 @@ export default function(){
             <div className="topbarLeft">
                 <span className='logo'>Fearbook</span>
             </div>
-            <div className="topbarcenter">
+            <div className="topbarCenter">
                 <div className="searchbar">
                 <Search/><input className="searchInput" placeholder="search for people, post or video">
                     
