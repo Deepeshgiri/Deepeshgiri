@@ -8,9 +8,9 @@ function App() {
   return (
     <>
     
-   <Topbar/>
+   
    <Home/>
-   <Feed/>
+   
    </>
   );
 }

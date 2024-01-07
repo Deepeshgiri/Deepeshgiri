@@ -1,8 +1,11 @@
 import React from 'react'
+import './leftsidebar.css'
 
 const Leftsidebar = () => {
   return (
-    <div>Leftsidebar</div>
+    <div className='leftsidebar'>
+        Leftsidebar
+        </div>
   )
 }
 
