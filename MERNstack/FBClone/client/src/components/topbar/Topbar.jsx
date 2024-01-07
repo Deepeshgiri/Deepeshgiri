@@ -1,5 +1,9 @@
 import './topbar.css'
 import { Chat, Notifications, Person, Search } from '@mui/icons-material'
+
+// import { } from '../../../public/assets/bloom.jpg'
+// client\public\assets\bloom.jpg
+
 export default function(){
     return(
         <div className="topbarContainer">
@@ -8,7 +12,7 @@ export default function(){
             </div>
             <div className="topbarCenter">
                 <div className="searchbar">
-                <Search/><input className="searchInput" placeholder="search for people, post or video">
+                <Search className='searchIcon'/><input className="searchInput" placeholder="search for people, post or video">
                     
                     </input>    
 
@@ -21,19 +25,19 @@ export default function(){
                 </div>
                 <div className="topbarIcons">
                     <div className="topbarIconItem">
-                        <Person/>
+                        <Person className='icon'/>
                         <span className="topbarIconBadge">1</span>
                     </div>
                     <div className="topbarIconItem">
-                        <Notifications/>
+                        <Notifications className='icon'/>
                         <span className="topbarIconBadge">2</span>
                     </div>
                     <div className="topbarIconItem">
-                        <Chat/>
+                        <Chat className='icon'/>
                         <span className="topbarIconBadge">3</span>
                     </div>
                 </div>
-                <img src="" alt="image" className="topbarImage" />
+                <img src="assets/bloom.jpg" alt="image" className="topbarImage" />
             </div>
         </div>
     )

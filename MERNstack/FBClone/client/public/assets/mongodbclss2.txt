@@ -1,0 +1,1313 @@
+how to find total of overall amount in a collection ( sum, max, min, avg)
+----------------------------------------------------------------------------
+abc_school> db.student.aggregate([{$group:{_id:null,total_fees:{$sum:"$fees"}}}])
+[ { _id: null, total_fees: 87000 } ]
+
+abc_school> db.student.aggregate([{$group:{_id:null,total_fees:{$max:"$fees"}}}])
+[ { _id: null, total_fees: 14000 } ]
+
+abc_school> db.student.aggregate([{$group:{_id:null,total_fees:{$min:"$fees"}}}])
+[ { _id: null, total_fees: 5000 } ]
+
+abc_school> db.student.aggregate([{$group:{_id:null,total_fees:{$avg:"$fees"}}}])
+[ { _id: null, total_fees: 10875 } ]
+
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+11
+abc_school> db.student.countDocuments()
+11
+abc_school> db.student.estimatedDocumentCount()
+
+abc_school> db.student.aggregate([{$match:{fees:{$gt:10000}}},{$count:'total_records'}]);
+[ { total_records: 5 } ]
+
+==>Match + group
+----------------------------------------------------------------------------------
+abc_school> db.student.aggregate([{$match:{fees:{$gt:10000}}},{$group:{_id:nulnull,total_fees:{$sum:"$fees"}}}]);
+[ { _id: null, total_fees: 62000 } ]
+abc_school> db.student.aggregate([{$match:{fees:{$lt:10000}}},{$group:{_id:null,total_fees:{$sum:"$fees"}}}]);
+[ { _id: null, total_fees: 5000 } ]
+abc_school> db.student.aggregate([{$match:{fees:{$lt:11000}}},{$group:{_id:null,total_fees:{$sum:"$fees"}}}]);
+[ { _id: null, total_fees: 25000 } ]
+
+--
+adding new field/column in an existing database
+abc_school> db.student.updateMany({},{$set:{join_date:new Date()}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+
+abc_school> db.student.find({},{name:1,course:1,join_date:1})
+--------------------
+increment
+{ $inc: { field1: amount1, field2: amount2, ... } }
+
+
+
+2.1) We will use count() method to find count of all employee in collection in MongoDB.
+db.employee.count()
+Output >
+5
+
+
+
+3) Find count of all employee where salary >= 2000 in collection in MongoDB >
+
+
+3.1) We will use find() and count() methods.
+db.employee.find( { salary : {$gte : 2000} } ).count()
+Output >
+4
+
+3.2) We can also use $count() operator to find count of all employee where salary >= 2000 in collection in MongoDB.
+Note :  $count can be used in MongoDB 3.4 or above.
+abc_school> db.student.aggregate([{$match:{fees:{$gt:10000}}},{$count:'total_records'}]);
+[ { total_records: 5 } ]
+Output >
+5
+==========================================
+drop() => to delete any colletion
+abc_school> db.product.drop()
+true
+
+dropDatabase() ==> to delete an existing database.
+apt> db.dropDatabase();
+{ ok: 1, dropped: 'apt' }
+
+regex ==> regular expresion
+
+abc_school> db.student.find({name:{$regex:"i"}});
+  or
+abc_school> db.student.find({name:/i/});
+
+$set ==> to add a new coloumn from a collection
+db.student.updateMany({},{$set:{join_date:new Date()}})
+
+$unset ==> to remove a column from a collection
+db.student.updateMany({},{$unset:{join_date:""}})
+----------------------------
+
+db.student.aggregate(
+   [
+      {
+         $project:
+           {
+             name : 1,
+             fee_cmp :
+               {
+                 $cond: { if: { $gte: [ "$fees", 11000 ] }, then: "high" , else: "low" }
+               }
+           }
+      }
+   ]
+)
+
+
+---------------------------------------------------------------------------------
+C:\Users\Arun>mongosh
+Current Mongosh Log ID: 6406ddc47afb799b2d7f8088
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
+Using MongoDB:          6.0.2
+Using Mongosh:          1.6.0
+
+abc_school> db.student.find();
+[
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 6000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ef"),
+    name: 'rohan',
+    course: 'mis',
+    fees: 4500
+  }
+]
+abc_school> db.student.insertOne({name:"vishal",course:"mern",fees:13000})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6406de7666e407b8aa6f3d23")
+}
+abc_school> db.student.insertOne({course:"mern"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6406de9f66e407b8aa6f3d24")
+}
+abc_school> db.student.find({course:"mern"})
+[
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("6406de7666e407b8aa6f3d23"),
+    name: 'vishal',
+    course: 'mern',
+    fees: 13000
+  },
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' }
+]
+abc_school> db.student.find({$lt:{fees:10000}})
+MongoServerError: unknown top level operator: $lt. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+abc_school> db.student.find($fees:{$lt:10000}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:21)
+
+> 1 | db.student.find($fees:{$lt:10000}})
+    |                      ^
+  2 |
+
+abc_school> db.student.find(fees:{$lt:10000}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:20)
+
+> 1 | db.student.find(fees:{$lt:10000}})
+    |                     ^
+  2 |
+
+abc_school> db.student.find({fees:{$lt:10000}})
+[
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 6000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ef"),
+    name: 'rohan',
+    course: 'mis',
+    fees: 4500
+  }
+]
+abc_school> db.student.find({fees:{$gt:10000}})
+[
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("6406de7666e407b8aa6f3d23"),
+    name: 'vishal',
+    course: 'mern',
+    fees: 13000
+  }
+]
+abc_school> db.student.find({fees:[{$gt:10000},{name:"vishal"}]})
+
+abc_school> db.student.find({$and:[{fees:{$gt:10000}},{name:"vishal"}]})
+[
+  {
+    _id: ObjectId("6406de7666e407b8aa6f3d23"),
+    name: 'vishal',
+    course: 'mern',
+    fees: 13000
+  }
+]
+abc_school> db.student.delete({id:6406de7666e407b8aa6f3d23})
+Uncaught:
+SyntaxError: Identifier directly after number. (1:26)
+
+> 1 | db.student.delete({id:6406de7666e407b8aa6f3d23})
+    |                           ^
+  2 |
+
+abc_school> db.student.delete({_id:6406de7666e407b8aa6f3d23})
+Uncaught:
+SyntaxError: Identifier directly after number. (1:27)
+
+> 1 | db.student.delete({_id:6406de7666e407b8aa6f3d23})
+    |                            ^
+  2 |
+
+abc_school> db.student.delete({_id:"6406de7666e407b8aa6f3d23"})
+TypeError: db.student.delete is not a function
+abc_school> db.student.deleteOne({_id:"6406de7666e407b8aa6f3d23"})
+{ acknowledged: true, deletedCount: 0 }
+abc_school> db.student.deleteOne({_id:6406de7666e407b8aa6f3d23})
+Uncaught:
+SyntaxError: Identifier directly after number. (1:30)
+
+> 1 | db.student.deleteOne({_id:6406de7666e407b8aa6f3d23})
+    |                               ^
+  2 |
+
+abc_school> db.student.find({name:"vishal"})
+[
+  {
+    _id: ObjectId("6406de7666e407b8aa6f3d23"),
+    name: 'vishal',
+    course: 'mern',
+    fees: 13000
+  }
+]
+abc_school> db.student.deleteOne({_id:ObjectId("6406de7666e407b8aa6f3d23")})
+{ acknowledged: true, deletedCount: 1 }
+abc_school> db.student.find({name:"vishal"})
+
+abc_school> db.student.deleteOne({$and:[{name:"rohan"},{course:"mis"}]});
+{ acknowledged: true, deletedCount: 1 }
+abc_school> db.student.find({course:"mis"});
+
+abc_school> db.student.find()
+[
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 6000
+  },
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' }
+]
+abc_school> db.student.updateOne({name:'raj',{$set:{course:"python fullstack"}}})
+Uncaught:
+SyntaxError: Unexpected token (1:33)
+
+> 1 | db.student.updateOne({name:'raj',{$set:{course:"python fullstack"}}})
+    |                                  ^
+  2 |
+
+abc_school> db.student.updateOne({name:'raj'},{$set:{course:"python fullstack"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+abc_school> db.student.find()
+[
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python fullstack',
+    fees: 6000
+  },
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' }
+]
+abc_school> db.student.updateOne({name:"raj"},{$set:{course:"python",fees:8000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+abc_school> db.student.find()
+[
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 8000
+  },
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' }
+]
+abc_school> db.student.updateOne({$and:[{name:"raj"},{city:"delhi"}]},{$set:{course:"java",fees:3000,city:"pune"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+abc_school> db.student.updateOne({name:"raj"},{$set:{fees:fees+3000}});
+ReferenceError: fees is not defined
+abc_school> db.student.updateOne({name:"raj"},{$set:{$inc:{fees:6000}}});
+MongoServerError: The dollar ($) prefixed field '$inc' in '$inc' is not allowed in the context of an update's replacement document. Consider using an aggregation pipeline with $replaceWith.
+abc_school> db.student.updateOne({name:"raj"},{$inc:{fees:6000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+abc_school> db.student.find();
+[
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' }
+]
+abc_school> db.student.find().sort({name:1})
+[
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' },
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  }
+]
+abc_school> db.student.find().sort({name:0})
+MongoInvalidArgumentError: Invalid sort direction: 0
+abc_school> db.student.find().sort({name:1})
+[
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' },
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  }
+]
+abc_school> db.student.find().sort({name:-1})
+[
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' }
+]
+abc_school> db.student.find().sort({name:-1}).limit(2)
+[
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  }
+]
+abc_school> db.student.find().sort({name:-1}).limit(4)
+[
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  }
+]
+abc_school> db.student.find().sort({name:1}).limit(4)
+[
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' },
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  }
+]
+abc_school> db.student.distinct('course');
+[ 'java', 'javascript', 'mern', 'php', 'python' ]
+abc_school> db.student.distinct('name');
+[
+  'amit',  'anjali',
+  'arun',  'kamal',
+  'kirti', 'manish',
+  'mohit', 'raj',
+  'ravi',  'simran'
+]
+abc_school> db.student.distinct('name').skip(2);
+TypeError: db.student.di ... name').skip is not a function
+abc_school> db.student.find().skip(2)
+[
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' }
+]
+abc_school> db.student.find().skip(4)
+[
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' }
+]
+abc_school> db.student.find().sort({name:1})
+[
+  { _id: ObjectId("6406de9f66e407b8aa6f3d24"), course: 'mern' },
+  {
+    _id: ObjectId("640598166ed44085973241e5"),
+    id: 101,
+    name: 'amit',
+    city: 'delhi'
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  }
+]
+abc_school> db.student.find().sort({name:1}).skip(3);
+[
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  }
+]
+abc_school> db.student.find().sort({name:1}).skip(2);
+[
+  {
+    _id: ObjectId("64059b506ed44085973241ea"),
+    name: 'anjali',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ed"),
+    name: 'arun',
+    course: 'java',
+    fees: 5000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e9"),
+    name: 'kamal',
+    course: 'javascript',
+    fees: 11000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241eb"),
+    name: 'kirti',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("640598c06ed44085973241e6"),
+    id: 102,
+    name: 'manish',
+    city: 'noida'
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e8"),
+    name: 'mohit',
+    course: 'php',
+    fees: 10000
+  },
+  {
+    _id: ObjectId("64059efc6ed44085973241ee"),
+    name: 'raj',
+    course: 'python',
+    fees: 14000
+  },
+  {
+    _id: ObjectId("64059ac06ed44085973241e7"),
+    name: 'ravi',
+    course: 'mern',
+    fees: 13000
+  },
+  {
+    _id: ObjectId("64059b506ed44085973241ec"),
+    name: 'simran',
+    course: 'javascript',
+    fees: 11000
+  }
+]
+abc_school> db.student.aggregate({$sum:"fees"})
+MongoServerError: Unrecognized pipeline stage name: '$sum'
+abc_school> db.student.aggregate([{$sum:"fees"}])
+MongoServerError: Unrecognized pipeline stage name: '$sum'
+abc_school> db.student.aggregate([{$group:{_id:"course"}}])
+[ { _id: 'course' } ]
+abc_school> db.student.aggregate([{$group:{course:"course"}}])
+MongoServerError: The field 'course' must be an accumulator object
+abc_school> db.student.aggregate([{$group:{_id:"course"}}])
+[ { _id: 'course' } ]
+abc_school> db.student.aggregate({totalAmount:{$sum:"fees"}})
+MongoServerError: Unrecognized pipeline stage name: 'totalAmount'
+abc_school> db.student.aggregate({fees:{$sum:"fees"}})
+MongoServerError: Unrecognized pipeline stage name: 'fees'
+abc_school> db.student.aggregate({fees:{$sum:"$fees"}})
+MongoServerError: Unrecognized pipeline stage name: 'fees'
+abc_school> db.student.aggregate([{fees:{$sum:"$fees"}}])
+MongoServerError: Unrecognized pipeline stage name: 'fees'
+abc_school> db.student.aggregate([{_id:"$fees",total:{$sum:1}}])
+MongoServerError: A pipeline stage specification object must contain exactly one field.
+abc_school> db.student.aggregate([{_id:"$fees",fees:{$sum:1}}])
+MongoServerError: A pipeline stage specification object must contain exactly one field.
+abc_school> db.student.aggregate([{$group:{_id:"$fees",fees:{$sum:1}}}])
+[
+  { _id: 10000, fees: 2 },
+  { _id: 5000, fees: 1 },
+  { _id: 13000, fees: 2 },
+  { _id: null, fees: 3 },
+  { _id: 14000, fees: 1 },
+  { _id: 11000, fees: 2 }
+]
+abc_school> db.student.aggregate([{$group:{_id:"$course",course:{$sum:1}}}])
+[
+  { _id: null, course: 2 },
+  { _id: 'php', course: 2 },
+  { _id: 'python', course: 1 },
+  { _id: 'javascript', course: 2 },
+  { _id: 'java', course: 1 },
+  { _id: 'mern', course: 3 }
+]
+abc_school> db.student.aggregate([{$group:{_id:"$course",c:{$sum:1}}}])
+[
+  { _id: null, c: 2 },
+  { _id: 'php', c: 2 },
+  { _id: 'python', c: 1 },
+  { _id: 'javascript', c: 2 },
+  { _id: 'java', c: 1 },
+  { _id: 'mern', c: 3 }
+]
+abc_school> db.student.aggregate([{$group:{_id:"$course",total:{$sum:1}}}])
+[
+  { _id: null, total: 2 },
+  { _id: 'python', total: 1 },
+  { _id: 'mern', total: 3 },
+  { _id: 'javascript', total: 2 },
+  { _id: 'java', total: 1 },
+  { _id: 'php', total: 2 }
+]
+abc_school> db.student.aggregate([{$group:{_id:"$course",total:{$sum:-1}}}])
+[
+  { _id: 'javascript', total: -2 },
+  { _id: 'java', total: -1 },
+  { _id: 'php', total: -2 },
+  { _id: null, total: -2 },
+  { _id: 'python', total: -1 },
+  { _id: 'mern', total: -3 }
+]
+abc_school> db.student.aggregate([{$group:{_id:"$course",total:{$sum:1}}}])
+[
+  { _id: null, total: 2 },
+  { _id: 'python', total: 1 },
+  { _id: 'mern', total: 3 },
+  { _id: 'javascript', total: 2 },
+  { _id: 'java', total: 1 },
+  { _id: 'php', total: 2 }
+]
+abc_school> db.student.aggregate([{$group:{_id:"$fees",fees:{$sum:1}}}])
+[
+  { _id: null, fees: 3 },
+  { _id: 13000, fees: 2 },
+  { _id: 11000, fees: 2 },
+  { _id: 10000, fees: 2 },
+  { _id: 5000, fees: 1 },
+  { _id: 14000, fees: 1 }
+]
+abc_school> db.student.aggregate([{$group:{_id:"$fees",fees:{$sum:"$fees"}}}])
+[
+  { _id: null, fees: 0 },
+  { _id: 13000, fees: 26000 },
+  { _id: 11000, fees: 22000 },
+  { _id: 10000, fees: 20000 },
+  { _id: 5000, fees: 5000 },
+  { _id: 14000, fees: 14000 }
+]
+abc_school> db.student.find([{$sum:"$fees"}])
+MongoInvalidArgumentError: Query filter must be a plain object or ObjectId
+abc_school> db.student.find({},{$sum:"$fees"})
+MongoServerError: FieldPath field names may not start with '$'. Consider using $getField or $setField.
+abc_school> db.student.find({$sum:"$fees"})
+MongoServerError: unknown top level operator: $sum. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+abc_school> db.student.aggregate([{$group:{_id:"$fees",fees:{$max:"$fees"}}}])
+[
+  { _id: null, fees: null },
+  { _id: 13000, fees: 13000 },
+  { _id: 11000, fees: 11000 },
+  { _id: 10000, fees: 10000 },
+  { _id: 5000, fees: 5000 },
+  { _id: 14000, fees: 14000 }
+]
+abc_school> db.student.aggregate([{_id:"$fees",fees:{$max:"$fees"}}])
+MongoServerError: A pipeline stage specification object must contain exactly one field.
+abc_school> db.student.aggregate([{_id:"$fees",fees:{$min:"$fees"}}])
+MongoServerError: A pipeline stage specification object must contain exactly one field.
+abc_school> db.student.aggregate([{$group:{_id:"$fees",fees:{$min:"$fees"}}}])
+[
+  { _id: null, fees: null },
+  { _id: 13000, fees: 13000 },
+  { _id: 14000, fees: 14000 },
+  { _id: 10000, fees: 10000 },
+  { _id: 11000, fees: 11000 },
+  { _id: 5000, fees: 5000 }
+]
+abc_school> db.student.aggregate([{$group:{_id:"$fees",fees:{$count:"$fees"}}}])
+MongoServerError: $count takes no arguments, i.e. $count:{}
+abc_school> db.student.aggregate([{$group:{_id:"$fees",fees:{$sum:1}}}])
+[
+  { _id: null, fees: 3 },
+  { _id: 13000, fees: 2 },
+  { _id: 14000, fees: 1 },
+  { _id: 10000, fees: 2 },
+  { _id: 11000, fees: 2 },
+  { _id: 5000, fees: 1 }
+]
+abc_school>
