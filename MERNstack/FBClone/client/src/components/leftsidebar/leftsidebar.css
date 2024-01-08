@@ -2,3 +2,10 @@
     flex: 2.5;
     height: calc(100vh-50px);
 }
+
+ul{
+    font-size: larger;
+    list-style: none;
+    padding: 15px;
+    margin: 15px;
+}
