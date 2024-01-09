@@ -1,11 +1,38 @@
 .leftsidebar{
     flex: 2.5;
     height: calc(100vh-50px);
+    overflow-y:scroll;
 }
 
-ul{
-    font-size: larger;
+ul{    
     list-style: none;
-    padding: 15px;
+
     margin: 15px;
+   
+}
+.bottomleftbar{
+    border-top: 2px solid grey;
+        position: relative;
+
+        
+    
+
+
+}
+.imageleftbar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    border: 20px salmon;
+    
+}
+
+.btmlistitem{
+    align-items: center;
+    display: flex;
+    padding: 5px;
+    }
+
+.personname{
+    margin-left: 5px;
 }
