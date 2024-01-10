@@ -1,7 +1,7 @@
 .leftsidebar{
     flex: 2.5;
     height: calc(100vh-50px);
-    overflow-y:scroll;
+    overflow:auto;
 }
 
 ul{    

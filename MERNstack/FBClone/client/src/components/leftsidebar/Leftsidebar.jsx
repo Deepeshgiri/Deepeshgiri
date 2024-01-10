@@ -52,9 +52,12 @@ const Leftsidebar = () => {
             <span>Bookmark</span>
           </li>
         </ul>
-
-        <Button>Show More</Button>
-        <div className="bottomleftbar">
+            <ul>
+                <li>
+                <Button>Show More</Button>
+                </li>
+            </ul>
+        
         <ul className="bottomlist">
         <li className="btmlistitem">
             <img src="assets/bloomd.jpg" alt="img" className="imageleftbar" />
@@ -106,7 +109,7 @@ const Leftsidebar = () => {
           </li>
           
         </ul>
-      </div>
+      
       </div>
       
     </div>
