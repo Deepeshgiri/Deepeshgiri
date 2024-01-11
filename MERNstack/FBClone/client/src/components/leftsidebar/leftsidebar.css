@@ -1,8 +1,11 @@
 .leftsidebar{
     flex: 2.5;
     height: calc(100vh-50px);
-    overflow:auto;
+    overflow-y: scroll;
+    
+    
 }
+
 
 ul{    
     list-style: none;
