@@ -5,6 +5,7 @@ import Leftsidebar from '../../components/leftsidebar/Leftsidebar';
 import Feed from '../../components/feed/feed'
 import Rightbar from '../../components/rightsidebar/Rightbar';
 import Topbar from '../../components/topbar/Topbar';
+import { Test } from '../../components/tests/Test';
 
 export default function Home  (){
 return(
@@ -14,6 +15,8 @@ return(
     <Leftsidebar/>
     <Feed/>
     <Rightbar/>
+{/* 
+    <Test/> */}
     </div>
     
     
