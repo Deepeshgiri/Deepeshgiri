@@ -1,9 +1,12 @@
 import React from 'react'
 import './feed.css'
+import { Sharebox } from './share/Sharebox'
 
 const feed = () => {
   return (
-    <div className='feed'>feed</div>
+  <div className='feed'>
+    <Sharebox/>
+  </div>
   )
 }
 

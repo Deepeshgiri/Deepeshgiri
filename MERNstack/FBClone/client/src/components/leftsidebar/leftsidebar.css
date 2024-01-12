@@ -7,17 +7,19 @@
 }
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 4px;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
+    width: 4px;
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #888;
+    
   }
   
   /* Handle on hover */
@@ -25,12 +27,7 @@
     background: #555;
   }
 
-.wrapper{
-    
-    overflow-y: scroll;
-    background-color: #888;
-   
-}
+
 
 
 
