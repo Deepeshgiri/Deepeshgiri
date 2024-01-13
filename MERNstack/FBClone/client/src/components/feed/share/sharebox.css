@@ -1,13 +1,51 @@
 .sharewrapper{
-    width: 100%;
+    width: 90%;
     height:140px;
-    background-color: blue;
+   margin-top: 10px;
+   margin-left: 10px;
+    
+   
+    justify-content: center;
+    align-items: center;
+    
+    
     
     
 
 }
 .box{
     
-    background-color: blue;
+    border-color: black;
+
+    width: 100%;
+    height: 100%;
+   
     
+    
+}
+
+.profileimg{
+    height: 40px;
+    width: 40px;
+    align-self: center;
+    border-radius: 50%;
+    padding: 10px;
+    border:2px solid grey;
+}
+
+.shareinputtext{
+    resize: vertical;
+    margin-left: 7px;
+    
+
+
+}
+.shareicon{
+    margin-left: 5px;
+    padding: 10px;
+}
+.shareicons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
