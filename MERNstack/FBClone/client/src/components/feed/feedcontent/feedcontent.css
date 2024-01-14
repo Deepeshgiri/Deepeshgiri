@@ -1,12 +1,15 @@
 .photovideo{
    
-    display: flex;
     
-    justify-content: center;
-    justify-items: center;
+    
+    
+}
+.content{
+    
+    
 }
 .imagevideo{
-    
+
     width: 80%;
     height: 80%;
 }
