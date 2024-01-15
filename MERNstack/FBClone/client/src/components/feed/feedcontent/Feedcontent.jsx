@@ -1,5 +1,7 @@
 import React from 'react'
 import './feedcontent.css'
+import { MoreVert } from '@mui/icons-material'
+
 
 const Feedcontent = () => {
   return (
@@ -29,9 +31,17 @@ const Feedcontent = () => {
         <div className="postWrapper">
             <div className="postTop">
                 <div className="postLeft">
-                    <img src="./assets/discbot.jpg" alt="" className="postimg" />
+                    <img src="./assets/discbot.jpg" alt="" className="postProfileimg" />
+                    <span className="postUserName">Cap Dist</span>
+                    <span className="postDate">5 min ago</span>
                 </div>
+                <div className="postRight"></div>
+                <MoreVert></MoreVert>
             </div>
+            <div className="postCenter"></div>
+            <span className="postText">Hey its mmy first post</span>
+            <img src="./assets/bloomd.jpg" alt="" className="postimg" />
+            <div className="postBottom">  </div>
         </div>
     </div>
   )
