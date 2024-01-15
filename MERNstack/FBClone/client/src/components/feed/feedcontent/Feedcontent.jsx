@@ -1,6 +1,6 @@
 import React from 'react'
 import './feedcontent.css'
-import { MoreVert } from '@mui/icons-material'
+import { Favorite, MoreVert, ThumbDown, ThumbUp } from '@mui/icons-material'
 
 
 const Feedcontent = () => {
@@ -40,8 +40,18 @@ const Feedcontent = () => {
             </div>
             <div className="postCenter"></div>
             <span className="postText">Hey its mmy first post</span>
-            <img src="./assets/bloomd.jpg" alt="" className="postimg" />
+            <img src="./assets/bloomd.jpg" alt="" className="postImg" />
             <div className="postBottom">  </div>
+            <div className="postBottomLeft">
+                <Favorite/>
+                <ThumbDown/>
+                <ThumbUp/>
+                <span className="postLikeCounter">5 people reacted</span>
+            </div>
+
+            <div className="postBottomRight">
+                <span className="postCommentText">comments go here</span>
+            </div>
         </div>
     </div>
   )
