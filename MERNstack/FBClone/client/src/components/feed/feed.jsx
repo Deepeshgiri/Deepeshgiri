@@ -8,6 +8,9 @@ const feed = () => {
   <div className='feed'>
     <Sharebox/>
     <Feedcontent/>
+    <Feedcontent/>
+    <Feedcontent/>
+    <Feedcontent/>
   </div>
   )
 }

@@ -4,6 +4,13 @@ import { Favorite, MoreVert, ThumbDown, ThumbUp } from '@mui/icons-material'
 
 
 const Feedcontent = () => {
+    const styleicon ={
+        color: 'blue',
+        fontSize: '16px',
+        
+        padding: '10px',
+        borderRadius: '5px',
+    }
   return (
     // <div className="photovideo">
     //     <div className="content">
@@ -41,15 +48,16 @@ const Feedcontent = () => {
             <div className="postCenter"></div>
             <span className="postText">Hey its mmy first post</span>
             <img src="./assets/bloomd.jpg" alt="" className="postImg" />
-            <div className="postBottom">  </div>
+            <div className="postBottom">  
             <div className="postBottomLeft">
-                <Favorite/>
-                <ThumbDown/>
-                <ThumbUp/>
-                <span className="postLikeCounter">5 people reacted</span>
+                <Favorite id="heart"/>
+                <ThumbDown id="thumbdown"/>
+                <ThumbUp id="thumbup"/>
+                <span className="postLikeCounter" style={styleicon }>5 people reacted</span>
             </div>
 
-            <div className="postBottomRight">
+            <div className="postBottomRight"></div>
+         
                 <span className="postCommentText">comments go here</span>
             </div>
         </div>
