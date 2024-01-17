@@ -6,7 +6,7 @@ const Rightbar = () => {
     <div className='rightbar'>
       <div className="rightBarWrapper">
         <div className="birthdayContainer">
-          <img src="./assets/18.jpeg" alt="" className="bdayimage" />
+          {/* <img src="./assets/18.jpeg" alt="" className="bdayimage" /> */}
           <span className="bdaytext">{" "} xyz and 32 others have birthday today</span>
         </div>
       </div>

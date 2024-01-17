@@ -1,3 +1,10 @@
 .rightbar{
     flex:3.5;
+    display: flex;
+    
+    
+}
+.rightBarWrapper{
+    display: flex;
+    width: 80%;
 }
