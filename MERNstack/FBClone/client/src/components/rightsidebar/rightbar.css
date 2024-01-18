@@ -1,10 +1,29 @@
 .rightbar{
     flex:3.5;
-    display: flex;
+    
     
     
 }
 .rightBarWrapper{
+    padding: 20px 20px 0 0;
+}
+.birthdayContainer{
     display: flex;
-    width: 80%;
+    align-items: center;
+}
+.bdayimage{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.rightbarAd{
+    width: 90%;
+    border-radius: 10px;
+    margin: 10px 0 10px 20px;
+    z-index: 10px;
+}
+.adtext{
+    display: flex;
 }
