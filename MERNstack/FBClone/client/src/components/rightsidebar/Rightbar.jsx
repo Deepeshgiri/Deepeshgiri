@@ -22,6 +22,37 @@ const Rightbar = () => {
             </div>
             
           </li>
+          <li className="rightbarfriend">
+            <div className="rightbarPrfileImgContainer">
+              <img src="./assets/34.jpeg" alt="" className="rightbarProfileImg" />
+              <span className="rightbaronline"></span>
+              <span className="rightbarusername">Cap dist</span>
+            </div>
+            
+          </li>
+          <li className="rightbarfriend">
+            <div className="rightbarPrfileImgContainer">
+              <img src="./assets/34.jpeg" alt="" className="rightbarProfileImg" />
+              <span className="rightbaronline"></span>
+              <span className="rightbarusername">Cap dist</span>
+            </div>
+            
+          </li>
+          <li className="rightbarfriend">
+            <div className="rightbarPrfileImgContainer">
+              <img src="./assets/34.jpeg" alt="" className="rightbarProfileImg" />
+              <span className="rightbaronline"></span>
+              <span className="rightbarusername">Cap dist</span>
+            </div>
+            
+          </li><li className="rightbarfriend">
+            <div className="rightbarPrfileImgContainer">
+              <img src="./assets/34.jpeg" alt="" className="rightbarProfileImg" />
+              <span className="rightbaronline"></span>
+              <span className="rightbarusername">Cap dist</span>
+            </div>
+            
+          </li>
         </ul>
       </div>
     </div>
