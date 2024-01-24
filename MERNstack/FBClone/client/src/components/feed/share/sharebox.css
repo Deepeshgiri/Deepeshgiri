@@ -1,15 +1,14 @@
 .sharewrapper{
     width: 90%;
-    height:140px;
+    height:160px;
    margin-top: 10px;
-   margin-left: 10px;
+  display: flex;
    margin-bottom: 30px;
-    border-radius: 2%;
-    justify-content: center;
+    border-radius: 5%;
     align-items: center;
-    box-shadow: -9px -6px 11px -3px rgba(0,0,0,0.55);
--webkit-box-shadow: -9px -6px 11px -3px rgba(0,0,0,0.55);
--moz-box-shadow: -9px -6px 11px -3px rgba(0,0,0,0.55);
+    box-shadow: -1px 3px 28px 0px rgba(0,0,0,1);
+    -webkit-box-shadow: -1px 3px 28px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -1px 3px 28px 0px rgba(0,0,0,1);
 }
 
 .box{
