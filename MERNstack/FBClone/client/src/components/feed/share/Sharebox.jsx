@@ -13,6 +13,7 @@ export const Sharebox = () => {
                     <PinDrop className="shareicon"/><span>Location</span>
                     <Collections className="shareicon"/><span>Photo or Video</span>
                     <EmojiEmotions className="shareicon"/><span>Feeling or activity</span>
+                    <button className='sharebutton'>Share</button>
                 </div>
 
         </div>

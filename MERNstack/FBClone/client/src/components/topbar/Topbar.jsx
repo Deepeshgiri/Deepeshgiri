@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './topbar.css'
 import { Chat, Notifications, Person, Search } from '@mui/icons-material'
 
@@ -5,6 +6,12 @@ import { Chat, Notifications, Person, Search } from '@mui/icons-material'
 // client\public\assets\bloom.jpg
 
 export default function(){
+    const[search,setsearch] = useState('')
+
+    const handlesearch=(e)=>{
+        e.preventdefault()
+        console.log(e)
+    }
     return(
         <div className="topbarContainer">
             <div className="topbarLeft">
