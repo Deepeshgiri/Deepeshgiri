@@ -1,9 +1,10 @@
 import React from 'react'
 import './feedcontent.css'
 import { Favorite, MoreVert, ThumbDown, ThumbUp } from '@mui/icons-material'
+import { Users } from '../../../dummyData'
 
 
-const Feedcontent = () => {
+const Feedcontent = ({post}) => {
     const styleicon ={
         color: 'blue',
         fontSize: '16px',
@@ -11,33 +12,37 @@ const Feedcontent = () => {
         padding: '10px',
         borderRadius: '5px',
     }
+    console.log(post)
+
+
+
   return (
    
     <div className="post">
         <div className="postWrapper">
             <div className="postTop">
                 <div className="postLeft">
-                    <img src="./assets/discbot.jpg" alt="" className="postProfileimg" />
-                    <span className="postUserName">Cap Dist</span>
-                    <span className="postDate">5 min ago</span>
+                    <img src="" alt="" className="postProfileimg" />
+                    <span className="postUserName">{post.username}</span>
+                    <span className="postDate">{post.date}</span>
                 </div>
                 <div className="postRight"></div>
                 <MoreVert></MoreVert>
             </div>
             <div className="postCenter"></div>
-            <span className="postText">Hey its mmy first post</span>
-            <img src="./assets/bloomd.jpg" alt="" className="postImg" />
+            <span className="postText">{post.desc}</span>
+            <img src={post.photo}  alt="" className="postImg" />
             <div className="postBottom">  
             <div className="postBottomLeft">
                 <Favorite id="heart"/>
                 <ThumbDown id="thumbdown"/>
                 <ThumbUp id="thumbup"/>
-                <span className="postLikeCounter" style={styleicon }>5 people reacted</span>
+                <span className="postLikeCounter" style={styleicon }>{post.like} people reacted</span>
             </div>
 
             <div className="postBottomRight"></div>
          
-                <span className="postCommentText">comments go here</span>
+                <span className="postCommentText">{post.comment}</span>
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import './sharebox.css'
 import { Collections, EmojiEmotions, PinDrop } from '@mui/icons-material'
 
+
 export const Sharebox = () => {
   return (
     <div className='sharewrapper'>
