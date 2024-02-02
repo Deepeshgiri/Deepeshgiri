@@ -15,12 +15,7 @@ const mailOptions = {
   from: 'softspintechnology@gmail.com',
   to: 'dabangdeepesh@gmail.com',
   subject: ' NodeMailer',
-  text: 'This is a test email sent from Node.js using NodeMailer.',
-  attachments: [
-    {
-      filename: 'example.txt',
-      content: 'This is the content of the attachment.',
-    },]
+  text: 'This is a test email sent from Node.js using NodeMailer.'
 };
 
 // Send the email
