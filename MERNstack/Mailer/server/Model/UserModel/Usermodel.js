@@ -3,34 +3,39 @@ const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
 const UserSchema = new schema({
-    userName:{
-        type:String,
-        unique:true,
-        required:true
+    UserName: {
+        type: String,
+        unique: true,
+        required: true
     },
-    Password:{
-        type:String,
-        required:True
+    Password: {
+        type: String,
+        required: true
     },
-    Usermail:{
-        type:String,
-        required:true,
-        unique:true
+    UserMail: {
+        type: String,
+        required: true,
+        unique: true
     },
-    CreateDate:{
-        type:Date,
-        default:Date.now()
+    CreateDate: {
+        type: Date,
+        default: Date.now()
     },
-     otp:{
-        type:String
+    Verified: {
+        type: Number,
+        default: 0
     },
-    otpExpires:{
-        type:Date
+    otp: {
+        type: String
     },
-    token:{
-        type:String,
+
+    otpExpires: {
+        type: Date
+    },
+    token: {
+        type: String,
     }
 
 })
 
-module.exports = UserSchema = mongoose.model('user' ,UserSchema)
+module.exports = mongoose.model('user', UserSchema)
