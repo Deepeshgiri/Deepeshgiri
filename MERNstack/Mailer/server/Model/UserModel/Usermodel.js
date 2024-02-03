@@ -26,7 +26,7 @@ const UserSchema = new schema({
         default: 0
     },
     otp: {
-        type: String
+        type: Number
     },
 
     otpExpires: {
