@@ -10,6 +10,7 @@ const mailroute = require('./Route/MailRoute.js')
 app.use(cors())
 app.use(express.json())
 app.use  (morgan('common'))
+// app.use(express.Router())
 
 //dbconnection
 dbconnect()
