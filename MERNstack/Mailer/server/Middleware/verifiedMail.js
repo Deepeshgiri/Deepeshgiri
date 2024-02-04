@@ -6,11 +6,15 @@ const  verified = (req , res, next)=>{
 
     if(verifiedUser.verify !== 1){
         res.status(401).json({msg:"user is not verified"})
-        return
+        
     }
 
    
-   next()
+  
 }
 
-module.exports = {verified}
+const createSecretKey = async (req,res,next)=>{
+
+}
+
+module.exports = {verified , createSecretKey}

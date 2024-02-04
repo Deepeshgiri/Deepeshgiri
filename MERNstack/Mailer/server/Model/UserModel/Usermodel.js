@@ -34,6 +34,9 @@ const UserSchema = new schema({
     },
     token: {
         type: String,
+    }, 
+    secret_Key:{
+        type:String
     }
 
 })
