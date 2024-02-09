@@ -3,23 +3,23 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // import { Row, Col } from "./components/styles/common";
 import { Row, Col } from "antd";
-const MenuBar = React.lazy(() => import("./components/menubar/index"));
-const SignIn = React.lazy(() => import("./components/signin/index"));
-const Home = React.lazy(() => import("./components/home/index"));
-const Explore = React.lazy(() => import("./components/explore/index"));
+const MenuBar = React.lazy(() => import("./components/menubar/index.js"));
+const SignIn = React.lazy(() => import("./components/signin/index.js"));
+const Home = React.lazy(() => import("./components/home/index.js"));
+const Explore = React.lazy(() => import("./components/explore/index.js"));
 const Notifications = React.lazy(() =>
-  import("./components/notifications/index")
+  import("./components/notifications/index.js")
 );
-const Messages = React.lazy(() => import("./components/messages/index"));
-const BookMarks = React.lazy(() => import("./components/bookmarks/index"));
-const Lists = React.lazy(() => import("./components/lists/index"));
-const Profile = React.lazy(() => import("./components/profile/index"));
-const Tweet = React.lazy(() => import("./components/tweet/index"));
-const Likes = React.lazy(() => import("./components/tweet/likes"));
-const Retweet = React.lazy(() => import("./components/tweet/retweets"));
-const SideBar = React.lazy(() => import("./components/sidebar/index"));
-const PageNotFound = React.lazy(() => import("./components/pageNotFound"));
-import PrivateRoute from "./privateRoute";
+const Messages = React.lazy(() => import("./components/messages/index.js"));
+const BookMarks = React.lazy(() => import("./components/bookmarks/index.js"));
+const Lists = React.lazy(() => import("./components/lists/index.js"));
+const Profile = React.lazy(() => import("./components/profile/index.js"));
+const Tweet = React.lazy(() => import("./components/tweet/index.js"));
+const Likes = React.lazy(() => import("./components/tweet/likes.js"));
+const Retweet = React.lazy(() => import("./components/tweet/retweets.js"));
+const SideBar = React.lazy(() => import("./components/sidebar/index.js"));
+const PageNotFound = React.lazy(() => import("./components/pageNotFound.js"));
+import PrivateRoute from "./privateRoute.js";
 
 const Routes = () => {
   // const dispatch = useDispatch();
