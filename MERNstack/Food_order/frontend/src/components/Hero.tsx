@@ -1,5 +1,5 @@
 import React from 'react'
-import pizza from '../assets/pizza.jpg'
+import pizza from '../assets/hero.png'
 
 function Hero() {
   return (

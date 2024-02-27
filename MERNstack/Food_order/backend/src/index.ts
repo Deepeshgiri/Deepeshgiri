@@ -13,6 +13,6 @@ app.get("/test", async (req: Request, res: Response) => {
   res.json({ message: "Hello" });
 });
 
-app.listen(7000, ()=>{
+app.listen(7002, ()=>{
     console.log(`server started at localhost : 7000`)
 })
