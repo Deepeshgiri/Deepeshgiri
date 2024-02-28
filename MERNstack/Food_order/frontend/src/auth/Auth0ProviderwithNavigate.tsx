@@ -11,12 +11,13 @@ const Auth0ProviderwithNavigate = ({ children }: Props) => {
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
   const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL;
 
-  const { createUser } = useCreateMyUser();
+  const { createUser} = useCreateMyUser();
 
   if (!domain || !clientId || !redirectUri) {
     throw new Error("unable to initialize Auth0");
   }
   const onRedirectCallback = (appState?: AppState, user?: User) => {
+    console.log(user)
     if (user?.sub && user?.email) {
       createUser({ auth0Id: user.sub, email: user.email });
     }
