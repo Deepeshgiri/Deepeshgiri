@@ -1,5 +1,10 @@
 ### Hi there 👋
-
+ ## My name is Deepesh Kumar,
+I am a full-stack Developer (I think so!!).
+I’m currently working on: diffrent language (without mastering any).
+I’m currently learning java script.
+I’m looking for help with finding a job or Project. any help will be appreciated.😄
+Ask me about hardware related question , Software , Games!
 <!--
 **Deepeshgiri/Deepeshgiri** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
