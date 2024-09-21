@@ -1,4 +1,4 @@
-
+![Visitor Count](https://profile-counter.glitch.me/{Deepeshgiri}/count.svg)
 ### Hi there 👋
  ## My name is Deepesh Kumar,
  ### I am actively looking for job.
